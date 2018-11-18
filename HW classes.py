@@ -9,10 +9,12 @@ Created on Sun Nov 18 12:37:28 2018
 class animals():
     
     hungry = True
+    animals_list = []
     
     def __init__(self, name, weight):
         self.name = name
         self.weight = weight
+        animals.animals_list.append(self)
     
 #    def name(self, value):
 #        self.name = value
@@ -26,7 +28,7 @@ class animals():
     def feed(self, value):
         self.hungry = False
         self.weight += value
-        print(name, "is not hungry.")
+        print(self.name, "is not hungry.")
     
     
 #дочерние классы
@@ -127,23 +129,25 @@ class duck(animals):
 goose_grey = goose('Grey', 2)
 goose_white = goose('White', 3)
 
-cow_manya = animals('Manya', 150)
+cow_manya = cow('Manya', 150)
 
-sheep_barashek = animals('Barashek', 40)
-sheep_kudryaviy = animals('Kudryaviy', 45)
+sheep_barashek = sheep('Barashek', 40)
+sheep_kudryaviy = sheep('Kudryaviy', 45)
 
-chicken_koko = animals('Koko', 2)
-chicken_kukareku = animals('Kukareku', 1)
+chicken_koko = chicken('Koko', 2)
+chicken_kukareku = chicken('Kukareku', 1)
 
-goat_horn = animals('Horn', 15)
-goat_hoove = animals('Hoove', 17)
+goat_horn = goat('Horn', 15)
+goat_hoove = goat('Hoove', 17)
 
-duck_kryakva = animals('Kryakva', 2)
+duck_kryakva = duck('Kryakva', 2)
 
-animals.feed(2)
+#animals.feed(2)
 
 
-print(goose_grey.__dict__)
+for animals in animals.animals_list:
+    print(animals.__dict__)
+
 
 
 

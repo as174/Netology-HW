@@ -199,7 +199,8 @@ weight = 0
 
 for animals in animals.animals_list:
     weight += animals.weight
-print('\n', 'Вес всех животных: ', weight, 'кг')
+print('Вес всех животных: ', weight, 'кг')
 
+all_animals = [goose_grey.__dict__, goose_white.__dict__, cow_manya.__dict__, sheep_barashek.__dict__, sheep_kudryaviy.__dict__, chicken_koko.__dict__, chicken_kukareku.__dict__, goat_horn.__dict__, goat_hoove.__dict__, duck_kryakva.__dict__]
 
-    
+print(all_animals)

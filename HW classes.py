@@ -28,7 +28,7 @@ class animals():
     def feed(self, value):
         self.hungry = False
         self.weight += value
-        print(self.name, "is not hungry.")
+        print("You have feed", self.name)
     
     
 #дочерние классы
@@ -142,11 +142,12 @@ goat_hoove = goat('Hoove', 17)
 
 duck_kryakva = duck('Kryakva', 2)
 
-#animals.feed(2)
+
+chicken_koko.feed(2)
 
 
-for animals in animals.animals_list:
-    print(animals.__dict__)
+#for animals in animals.animals_list:
+#    print(animals.__dict__)
 
 
 

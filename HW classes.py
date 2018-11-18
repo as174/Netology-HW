@@ -146,6 +146,10 @@ duck_kryakva = duck('Kryakva', 2)
 #chicken_koko.feed(2)
 #animals.feed(2)
 
+for animals in animals.animals_list:
+    animals.feed(1)
+
+
 weight = 0
 
 for animals in animals.animals_list:

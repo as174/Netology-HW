@@ -143,17 +143,14 @@ goat_hoove = goat('Hoove', 17)
 duck_kryakva = duck('Kryakva', 2)
 
 
-chicken_koko.feed(2)
-animals.feed(2)
+#chicken_koko.feed(2)
+#animals.feed(2)
 
-#for animals in animals.animals_list:
-#    print(animals.__dict__)
+weight = 0
+
+for animals in animals.animals_list:
+    weight += animals.weight
+print('Вес всех животных: ', weight, 'кг')
 
 
-
-
-#print(goose_grey.eggs)
-#
-#goose_grey.pick_eggs(2)
-#print(goose_grey.eggs)
-
+    

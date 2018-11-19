@@ -203,4 +203,5 @@ print('Вес всех животных: ', weight, 'кг')
 
 all_animals = [goose_grey.__dict__, goose_white.__dict__, cow_manya.__dict__, sheep_barashek.__dict__, sheep_kudryaviy.__dict__, chicken_koko.__dict__, chicken_kukareku.__dict__, goat_horn.__dict__, goat_hoove.__dict__, duck_kryakva.__dict__]
 
-print(all_animals)
+all_animals.sort(key=lambda k: k['weight'])
+print('Самое тяжелое животное зовут:', all_animals[-1]['name'])

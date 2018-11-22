@@ -6,7 +6,7 @@ Created on Sun Nov 18 12:37:28 2018
 """
 
 #parent class
-class animals():
+class animal():
     
     hungry = True
     animals_list = []
@@ -14,7 +14,7 @@ class animals():
     def __init__(self, name, weight):
         self.name = name
         self.weight = weight
-        animals.animals_list.append(self)
+        animal.animals_list.append(self)
     
 #    def name(self, value):
 #        self.name = value
@@ -34,7 +34,7 @@ class animals():
 #дочерние классы
 
 #grey and white
-class goose(animals):
+class goose(animal):
     
     goose_list =[]
     
@@ -54,7 +54,7 @@ class goose(animals):
             
 
 #Manya
-class cow(animals):
+class cow(animal):
     
     cow_list =[]
     
@@ -73,7 +73,7 @@ class cow(animals):
             print("You've collected", value, "milk from", self.name)
 
 #Barashek and kudryaviy
-class sheep(animals):
+class sheep(animal):
     
     sheep_list = []
     
@@ -92,7 +92,7 @@ class sheep(animals):
             print("You've sheared", value, "wool from", self.name)
 
 #co-co and kukareku
-class chicken(animals):
+class chicken(animal):
     
     chicken_list = []
     
@@ -112,7 +112,7 @@ class chicken(animals):
         
         
 #horns and hooves
-class goat(animals):
+class goat(animal):
     
     goat_list = []
     
@@ -131,7 +131,7 @@ class goat(animals):
             print("You've collected", value, "milk from", self.name)
         
 #kryakva
-class duck(animals):
+class duck(animal):
     
     duck_list = []
     
@@ -170,8 +170,8 @@ duck_kryakva = duck('Kryakva', 2)
 #chicken_koko.feed(2)
 #animals.feed(2)
 
-for animals in animals.animals_list:
-    animals.feed(1)
+for animal in animal.animals_list:
+    animal.feed(1)
 
 print('\n')
 
@@ -197,8 +197,8 @@ print('\n')
 
 weight = 0
 
-for animals in animals.animals_list:
-    weight += animals.weight
+for animal in animal.animals_list:
+    weight += animal.weight
 print('Вес всех животных: ', weight, 'кг')
 
 all_animals = [goose_grey.__dict__, goose_white.__dict__, cow_manya.__dict__, sheep_barashek.__dict__, sheep_kudryaviy.__dict__, chicken_koko.__dict__, chicken_kukareku.__dict__, goat_horn.__dict__, goat_hoove.__dict__, duck_kryakva.__dict__]

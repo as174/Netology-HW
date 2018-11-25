@@ -8,8 +8,8 @@ Created on Sun Nov 25 19:00:59 2018
 documents = [
    {"type": "passport", "number": "2207 876234", "name": "Василий Гупкин"},
    {"type": "invoice", "number": "11-2", "name": "Геннадий Покемонов"},
-   {"type": "insurance", "number": "10006", "name": "Аристарх Павлов"}
-   ]
+   {"type": "insurance", "number": "10006", "name": "Аристарх Павлов"},
+   {"type": "INN", "number": "771231230213"},] #для исключения keyerror
 
 directories = {
   '1': ['2207 876234', '11-2'],
@@ -70,7 +70,11 @@ def add(command):
 
 def name(command):
     for data in command:
-        print(data['name'])
+        try:
+            print(data['name'])
+        except KeyError:
+            print('В документе {} номер {} нет имени владельца'.format(data['type'], data['number']))
+
 
 command = input('Доступные команды: p, l, s, a, n. \n p – имя человека по номеру документа.\n l - список всех документов. \n s – номер полки по номеру документа. \n a – добавление нового документа в каталог и в перечень полок по номеру, типу, имени владельца и номеру полки, на котором он будет храниться.\n n – имена всех людей, владельцев документов. \n\n Введите команду: ')
 

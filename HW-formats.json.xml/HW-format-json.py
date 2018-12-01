@@ -9,9 +9,6 @@ Created on Sat Dec  1 01:19:30 2018
 # длиннее 6 символов для каждого файла.
 
 
-
-#записать все слова длиннее 6 слов
-
 import json
 from collections import Counter
 

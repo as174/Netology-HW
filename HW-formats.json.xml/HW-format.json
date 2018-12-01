@@ -1,0 +1,17 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Dec  1 01:19:30 2018
+
+@author: AS
+"""
+#Написать программу, 
+#которая будет выводить топ 10 самых часто встречающихся в новостях слов
+# длиннее 6 символов для каждого файла.
+
+
+#прочитать файл
+import json
+
+with open("newsafr.json") as datafile:
+    json_data = json.load()
+    print(json_data)

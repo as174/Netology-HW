@@ -40,13 +40,16 @@ def translate_it(txt, language_input, language_output = 'ru'):
     response = requests.get(url, params=params, timeout=30).json()
     
 #    записываем в файл
-    with open('text-ru.txt', 'w') as f:
+    
+    new_file = language_input + '-ru.txt'
+    
+    with open(new_file, 'w') as f:
         f.write(' '.join(response.get('text', [])))
 #    return ' '.join(response.get('text', []))
     
     
 if __name__ == '__main__':
     
-    translate_it('es.txt', 'es')
+    translate_it('fr.txt', 'fr')
 
     

@@ -5,7 +5,7 @@
 
 import requests
 
-def translate_it(txt):
+def translate_it(txt, language_input, language_output = 'ru'):
     """
     YANDEX translation plugin
 
@@ -25,17 +25,21 @@ def translate_it(txt):
     url = 'https://translate.yandex.net/api/v1.5/tr.json/translate'
     key = 'trnsl.1.1.20181203T174752Z.949933b6bd21e319.3735be4a82be1a600f791f625513c1a4ccdb7403'
     
+#    читаем файл, который надо перевести
     with open(txt, encoding='utf-8') as f:
         text = f.readlines()
-        return(text)
+    
+        
         
     params = {
         'key': key,
-        'lang': 'fr-ru',
+        'lang': language_input + '-' + language_output,
         'text': text,
     }
        
     response = requests.get(url, params=params, timeout=30).json()
+    
+#    записываем в файл
     with open('text-ru.txt', 'w') as f:
         f.write(' '.join(response.get('text', [])))
 #    return ' '.join(response.get('text', []))
@@ -43,5 +47,6 @@ def translate_it(txt):
     
 if __name__ == '__main__':
     
-    translate_it('fr.txt')
+    translate_it('es.txt', 'es')
+
     

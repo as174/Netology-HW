@@ -36,11 +36,12 @@ def translate_it(txt):
     }
        
     response = requests.get(url, params=params, timeout=30).json()
-    with open('text-ru.txt', 'a') as f:
-        f.write.join(response.get('text', []))
+    with open('text-ru.txt', 'w') as f:
+        f.write(' '.join(response.get('text', [])))
 #    return ' '.join(response.get('text', []))
     
-
-
-translate_it('fr.txt')
-#print(a)
+    
+if __name__ == '__main__':
+    
+    translate_it('fr.txt')
+    

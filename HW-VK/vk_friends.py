@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Created on Mon Dec 10 09:30:53 2018
 
@@ -7,23 +6,46 @@ Created on Mon Dec 10 09:30:53 2018
 
 import requests
 
+token = 'dccb3337600db8cf084e3e876aab7b6f2dca75e318f9beee9260ea3c57f1ece40370312fc062f5a1e4e81'
+
 class User():
     
-    def __init__(self, token):
-        self.token = token
-    
+    def __init__(self, id):
+        self.id = id
+        
     def get_mutual_friends(self, friend_id):
-            params = {
+        params = {
                 'target_uid': friend_id,
-                'access_token': self.token,
+                'access_token': token,
+                'v': 5.92     
+           }
+        url = ('https://api.vk.com/method/friends.getMutual?')
+        response = requests.get(url, params).json()
+        return(response)
+    
+    def __and__(self, other):
+        params = {
+                'target_uid': other.id,
+                'access_token': token,
                 'v': 5.92     
                 }
-            url = ('https://api.vk.com/method/friends.getMutual?')
-            response = requests.get(url, params).json()
-            return(response)
-
-token_1 = '91e932eb4cb252f9e6b3e382f1416846d8cd6cfd2e57d1d6f412071df984257e41d49ea76281cf8d8e3f2'
+        url = ('https://api.vk.com/method/friends.getMutual?')
+        response = requests.get(url, params).json()
+#        return(response)
+        list_id = response['response']
+        users = []
+        for id in list_id:
+            users.append(User(id))
+        return(users)
           
-me = User(token_1)
+me = User(1306975)
 
-print(me.get_mutual_friends(905767))
+friend = User(905767)
+
+print(me)
+
+#friend_2 = User(1029178)
+#
+#friend_3 = User(6244347)
+#
+#print(me)

@@ -6,7 +6,7 @@ Created on Mon Dec 10 09:30:53 2018
 
 import requests
 
-token = 'dccb3337600db8cf084e3e876aab7b6f2dca75e318f9beee9260ea3c57f1ece40370312fc062f5a1e4e81'
+token = ''
 
 class User():
     

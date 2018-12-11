@@ -37,6 +37,9 @@ class User():
         for id in list_id:
             users.append(User(id))
         return(users)
+        
+    def __str__(self):
+        return('https://www.vk.com/id' + str(self.id))
           
 me = User(1306975)
 

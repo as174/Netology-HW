@@ -31,7 +31,6 @@ class User():
                 }
         url = ('https://api.vk.com/method/friends.getMutual?')
         response = requests.get(url, params).json()
-#        return(response)
         list_id = response['response']
         users = []
         for id in list_id:
@@ -47,8 +46,3 @@ friend = User(905767)
 
 print(me)
 
-#friend_2 = User(1029178)
-#
-#friend_3 = User(6244347)
-#
-#print(me)

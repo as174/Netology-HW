@@ -32,18 +32,20 @@ token  = 'ed1271af9e8883f7a7c2cefbfddfcbc61563029666c487b2f71a5227cce0d1b533c4af
 
 user = input('Введите id пользователя или его user_name:')
 
-if type(user) == str:
-    user_id = user
-else: 
+try: 
     params = {
     'access_token': token,
     'v': 5.92,
-    'user_ids': user_id,
     'q': user
         }
     url = 'https://api.vk.com/method/users.search' 
     response = requests.get(url, params=params, timeout=30).json()
-    user_id = response['response'][0]['id']
+    user_id = response['response']['items'][0]['id']
+except:
+    user_id = user
+
+print(user_id)
+
 
 ##1. найти все группы, в которых состоит юзер. Записать в множество user_groups_set
 def get_user_groups(user_id):
@@ -58,8 +60,8 @@ def get_user_groups(user_id):
     return(user_groups_set)
     
 user_groups_set = get_user_groups(user_id)    
-#
-##2. найти всех друзей юзера. Записать их в список friends_list
+##
+###2. найти всех друзей юзера. Записать их в список friends_list
 def get_user_friends(user_id):
     params = {
         'access_token': token,
@@ -72,12 +74,14 @@ def get_user_friends(user_id):
     return(friends_list_id)
 
 friends_list_id = get_user_friends(user_id)
+
+print('friends_list_id: ', friends_list_id)
 #
 #
-##3. найти все группы друзей юзера, записать во множество friends_group_set
-#
-##попробуем на примере 4 друзей в списке
-##friends_list_id = [4929, 7858, 11952, 48807]
+###3. найти все группы друзей юзера, записать во множество friends_group_set
+##
+###попробуем на примере 4 друзей в списке
+###friends_list_id = [4929, 7858, 11952, 48807]
 #
 friends_group = []
 count = 1
@@ -98,14 +102,17 @@ for friend in friends_list_id:
     count += 1
 
 friends_group_set = set(friends_group)
+print('friends_group_set: ', friends_group_set)
 #
 #
-##4. найти группы из первого множества, которых нет во втором
+###4. найти группы из первого множества, которых нет во втором
 only_user_groups = user_groups_set.difference(friends_group_set)
+
+print('only_user_groups:', only_user_groups)
 #
-##only_user_groups = {125927592, 8564, 101522128} - результат
-#
-##5. для групп из последнего множества находим имя, id, кол-во участников
+###only_user_groups = {125927592, 8564, 101522128} - результат
+##
+###5. для групп из последнего множества находим имя, id, кол-во участников
 
 group_list = []
 for group in only_user_groups:
@@ -123,10 +130,13 @@ for group in only_user_groups:
     group_info_dict['members_count'] = (response['response'][0]['members_count'])
     group_list.append(group_info_dict)
 
-
+print('group_list:', group_list)
 
 with open ('groups.json', 'w') as f:
     f.write(json.dumps(group_list))
-#    
     
+#    
+#
+##    
+#    
     

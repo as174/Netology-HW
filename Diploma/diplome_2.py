@@ -24,13 +24,28 @@ import json
 
 token  = 'ed1271af9e8883f7a7c2cefbfddfcbc61563029666c487b2f71a5227cce0d1b533c4af4c5b888633c06ae'
 
-user_name = 'eshmargunov'
 
-user_id = '171691064'
 
-#user_id = input('Введите id пользователя:')
+#user_name = 'eshmargunov'
+#
+#user_id = 171691064
 
-#1. найти все группы, в которых состоит юзер. Записать в множество user_groups_set
+user = input('Введите id пользователя или его user_name:')
+
+if type(user) == str:
+    user_id = user
+else: 
+    params = {
+    'access_token': token,
+    'v': 5.92,
+    'user_ids': user_id,
+    'q': user
+        }
+    url = 'https://api.vk.com/method/users.search' 
+    response = requests.get(url, params=params, timeout=30).json()
+    user_id = response['response'][0]['id']
+
+##1. найти все группы, в которых состоит юзер. Записать в множество user_groups_set
 def get_user_groups(user_id):
     params = {
         'access_token': token,
@@ -43,8 +58,8 @@ def get_user_groups(user_id):
     return(user_groups_set)
     
 user_groups_set = get_user_groups(user_id)    
-
-#2. найти всех друзей юзера. Записать их в список friends_list
+#
+##2. найти всех друзей юзера. Записать их в список friends_list
 def get_user_friends(user_id):
     params = {
         'access_token': token,
@@ -57,13 +72,13 @@ def get_user_friends(user_id):
     return(friends_list_id)
 
 friends_list_id = get_user_friends(user_id)
-
-
-#3. найти все группы друзей юзера, записать во множество friends_group_set
-
-#попробуем на примере 4 друзей в списке
-#friends_list_id = [4929, 7858, 11952, 48807]
-
+#
+#
+##3. найти все группы друзей юзера, записать во множество friends_group_set
+#
+##попробуем на примере 4 друзей в списке
+##friends_list_id = [4929, 7858, 11952, 48807]
+#
 friends_group = []
 count = 1
 for friend in friends_list_id:
@@ -81,15 +96,16 @@ for friend in friends_list_id:
     print('Проверены группа друга № {}'.format(count))
     time.sleep(3)
     count += 1
+
 friends_group_set = set(friends_group)
-
-
-#4. найти группы из первого множества, которых нет во втором
-only_user_groups = user_groups_set.difference(friends_group_set)
-
-#only_user_groups = {125927592, 8564, 101522128} - результат
-
-#5. для групп из последнего множества находим имя, id, кол-во участников
+#
+#
+##4. найти группы из первого множества, которых нет во втором
+#only_user_groups = user_groups_set.difference(friends_group_set)
+#
+##only_user_groups = {125927592, 8564, 101522128} - результат
+#
+##5. для групп из последнего множества находим имя, id, кол-во участников
 
 group_list = []
 for group in only_user_groups:
@@ -111,6 +127,6 @@ for group in only_user_groups:
 
 with open ('groups.json', 'w') as f:
     f.write(json.dumps(group_list))
-    
+#    
     
     

@@ -101,7 +101,7 @@ friends_group_set = set(friends_group)
 #
 #
 ##4. найти группы из первого множества, которых нет во втором
-#only_user_groups = user_groups_set.difference(friends_group_set)
+only_user_groups = user_groups_set.difference(friends_group_set)
 #
 ##only_user_groups = {125927592, 8564, 101522128} - результат
 #

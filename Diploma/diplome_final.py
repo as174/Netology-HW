@@ -33,7 +33,6 @@ def find_user_id(user):
     return(user_id)
 
 def get_user_groups(user_id):
-    user_id = find_user_id(user)
     params = {
         'access_token': token,
         'v': 5.92,
@@ -46,7 +45,6 @@ def get_user_groups(user_id):
     
 
 def get_user_friends(user_id):
-    user_id = find_user_id(user)
     params = {
         'access_token': token,
         'v': 5.92,
@@ -105,7 +103,11 @@ def write_group_list_json(group_list):
     
 
 if __name__ == '__main__':
-    write_group_list_json(get_group_list(get_user_groups(find_user_id), get_friends_group(get_user_friends(find_user_id))))
+
+    write_group_list_json(get_group_list(get_user_groups(find_user_id(user)), get_friends_group(get_user_friends(find_user_id(user)))))
+
 pass
+    
+    
     
     

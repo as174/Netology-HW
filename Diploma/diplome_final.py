@@ -32,7 +32,9 @@ def find_user_id(user):
         user_id = user
     return(user_id)
 
-def get_user_groups(user_id):
+
+def get_user_groups():
+    user_id = find_user_id(user)
     params = {
         'access_token': token,
         'v': 5.92,
@@ -42,9 +44,9 @@ def get_user_groups(user_id):
     response = requests.get(url, params=params, timeout=30).json()
     user_groups_set = set(response['response']['items'])
     return(user_groups_set)
-    
 
-def get_user_friends(user_id):
+def get_user_friends():
+    user_id = find_user_id(user)
     params = {
         'access_token': token,
         'v': 5.92,
@@ -54,9 +56,10 @@ def get_user_friends(user_id):
     response = requests.get(url, params=params, timeout=30).json()
     friends_list_id = response['response']['items']
     return(friends_list_id)
+    
 
-
-def get_friends_group(friends_list_id):
+def get_friends_group():
+    friends_list_id = get_user_friends()
     friends_group = []
     count = 1
     for friend in friends_list_id:
@@ -78,7 +81,9 @@ def get_friends_group(friends_list_id):
     return(friends_group_set)
 
 
-def get_group_list(user_groups_set, friends_group_set):
+def get_group_list():
+    user_groups_set = get_user_groups()
+    friends_group_set = get_friends_group()
     only_user_groups = user_groups_set.difference(friends_group_set)
     group_list = []
     for group in only_user_groups:
@@ -95,19 +100,16 @@ def get_group_list(user_groups_set, friends_group_set):
         group_info_dict['gid'] = (response['response'][0]['id'])
         group_info_dict['members_count'] = (response['response'][0]['members_count'])
         group_list.append(group_info_dict)
+    return(group_list)
 
 
-def write_group_list_json(group_list):
+def write_group_list_json():
+    group_list = get_group_list()
     with open ('groups.json', 'w') as f:
         f.write(json.dumps(group_list))
     
 
 if __name__ == '__main__':
-
-    write_group_list_json(get_group_list(get_user_groups(find_user_id(user)), get_friends_group(get_user_friends(find_user_id(user)))))
-
+    write_group_list_json()
 pass
-    
-    
-    
     

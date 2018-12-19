@@ -75,7 +75,7 @@ def get_friends_group():
         else:
             friends_group.extend(response['response']['items'])
         print('Проверены группа друга № {}'.format(count))
-        time.sleep(3)
+        time.sleep(0.5)
         count += 1
     friends_group_set = set(friends_group)
     return(friends_group_set)
